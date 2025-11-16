@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo KitSubStack</title>
+  <script src="https://unpkg.com/@kitmodule/kitsubstack/dist/kitsubstack.min.js"></script>
+</head>
+<body>
+  <h1>Demo KitSubStack</h1>
+
+  <label for="substackLink">Nhập link hoặc username Substack:</label>
+  <input type="text" id="substackLink" placeholder="example.substack.com" style="width: 300px;">
+  <button id="zipBtn">Tạo ZIP các bài viết</button>
+
+  <script>
+    document.getElementById("zipBtn").addEventListener("click", async () => {
+      const link = document.getElementById("substackLink").value.trim();
+      if (!link) {
+        alert("Vui lòng nhập link hoặc username Substack!");
+        return;
+      }
+
+      // Khởi tạo KitSubStack với link nhập vào
+      const kit = new KitSubStack(link);
+
+      // Cấu hình
+      kit.offset(0)
+         .limit(5)
+         .numbering(true)
+         .frontMatter("hashnode")
+         .replaces("Substack", "Hashnode")
+         .progress(fetch => {
+           if (fetch.success) console.log("✅ Đã lấy:", fetch.post.slug);
+           else console.error("❌ Lỗi:", fetch.slug ?? "unknown");
+         })
+         .completed(filename => {
+           console.log("✅ ZIP sẵn sàng:", filename);
+           alert("ZIP đã tạo: " + filename);
+         });
+
+      // Thực hiện zip
+      await kit.zip();
+    });
+  </script>
+</body>
+</html>

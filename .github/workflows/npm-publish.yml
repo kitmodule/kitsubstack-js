@@ -1,0 +1,66 @@
+# .github/workflows/publish.yml
+name: Publish to NPM
+
+on:
+  push:
+    tags:
+      - 'v*'   # ex: v0.0.1 → publish version 0.0.1
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      # -------------------------------------------------
+      # 1️⃣ Checkout source code
+      # -------------------------------------------------
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # -------------------------------------------------
+      # 2️⃣ Extract version from tag (v1.2.3 → 1.2.3)
+      # -------------------------------------------------
+      - name: Extract version from tag
+        id: tag
+        run: |
+          TAG=${GITHUB_REF#refs/tags/}
+          VERSION=${TAG#v}
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      # -------------------------------------------------
+      # 3️⃣ Setup Node environment
+      # -------------------------------------------------
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+          cache: npm
+
+      # -------------------------------------------------
+      # 4️⃣ Install & Build
+      # -------------------------------------------------
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      # -------------------------------------------------
+      # 5️⃣ Sync package.json version (to match tag)
+      # -------------------------------------------------
+      - name: Sync package.json version
+        run: npm version ${{ steps.tag.outputs.version }} --no-git-tag-version
+
+      # -------------------------------------------------
+      # 6️⃣ Publish to NPM
+      # -------------------------------------------------
+      - name: Publish to NPM
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

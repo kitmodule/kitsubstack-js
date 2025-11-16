@@ -1,0 +1,36 @@
+{
+  "name": "@kitmodule/kitsubstack",
+  "version": "1.0.0",
+  "description": "Fetch Substack posts, convert to Markdown with front matter, replace content, and export as ZIP — lightweight, dependency-free, and easy to use.",
+  "homepage": "https://github.com/kitmodule/kitsubstack-js",
+  "bugs": {
+    "url": "https://github.com/kitmodule/kitsubstack-js/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kitmodule/kitsubstack-js.git"
+  },
+  "author": "Huỳnh Nhân Quốc (https://github.com/huynhnhanquoc)",
+  "license": "MIT",
+  "main": "dist/kitsubstack.js",
+  "unpkg": "dist/kitsubstack.min.js",
+  "jsdelivr": "dist/kitsubstack.min.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "substack",
+    "markdown",
+    "yaml",
+    "frontmatter",
+    "zip",
+    "vanilla-js",
+    "kitsubstack",
+    "kitmodule"
+  ],
+  "scripts": {
+    "build": "echo 'build step here'",
+    "prepublishOnly": "npm run build"
+  }
+}
