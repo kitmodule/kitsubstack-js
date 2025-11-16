@@ -25,19 +25,19 @@
 ### Sử dụng npm
 
 ```bash
-npm install @kitmodule/kitsubstack-js
+npm install @kitmodule/kitsubstack
 ```
 
 ### Sử dụng CDN
 
 ```html
-<script src="https://unpkg.com/@kitmodule/kitsubstack-js/dist/kitsubstack.min.js"></script>
+<script src="https://unpkg.com/@kitmodule/kitsubstack/dist/kitsubstack.min.js"></script>
 ```
 
 hoặc
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/kitsubstack-js/dist/kitsubstack.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/kitsubstack/dist/kitsubstack.min.js"></script>
 ```
 
 ---
