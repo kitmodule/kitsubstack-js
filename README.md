@@ -4,7 +4,7 @@
 
 [English](#) | [Tiếng Việt](https://github.com/kitmodule/kitsubstack-js/blob/master/README.vi.md)
 
-[![npm version](https://img.shields.io/npm/v/kitsubstack-js.svg)](https://www.npmjs.com/package/kitsubstack-js)
+[![npm version](https://img.shields.io/npm/v/kitsubstack.svg)](https://www.npmjs.com/package/kitsubstack)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/kitmodule/kitsubstack-js/blob/master/LICENSE)
 
 ---
